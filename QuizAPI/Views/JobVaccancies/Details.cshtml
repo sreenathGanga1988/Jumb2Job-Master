@@ -1,0 +1,131 @@
+﻿@model QuizAPI.Models.JobVaccancy
+
+<div class="panel panel-success">
+    <div class="row panel-heading">
+        <div class="col-sm-7 ">
+
+            <p class="h4"><strong>  @Model.JobTitle</strong></p>
+        </div>
+        <div class=" col-sm-1">
+            JB
+        </div>
+        <div class=" col-sm-4">
+            @Model.CountryMaster.CountryName ,   @Model.JobLocation  <br />
+            @Model.PostedDate
+        </div>
+    </div>
+
+
+    <div class="row panel-body">
+        <div class=" col-sm-7">
+            <p class="font-italic"><i>   @Model.CompanyName</i></p>
+
+        </div>
+        <div class=" col-sm-1">
+
+        </div>
+        <div class=" col-sm-4">
+
+        </div>
+    </div>
+
+    <div class="row panel-body">
+        <div class="col-sm-4">
+            Job Type :    @Model.EmploymentType
+        </div>
+        <div class=" col-sm-4">
+            Career level :  @Model.CareerLevel
+        </div>
+        <div class="col-sm-4">
+            Min Exp :   @Model.MinimumWorkExperience
+        </div>
+    </div>
+
+    <div class="row panel-body">
+        <div class="col-sm-4">
+            Monthly Salary :  @Model.MonthlySalary
+        </div>
+        <div class=" col-sm-4">
+            Company Size :   @Model.CompanySize
+        </div>
+        <div class="col-sm-4">
+            Min Education :   @Model.MinimumEducationLevel
+        </div>
+    </div>
+    <div class="row panel-body">
+        <div class="col-sm-2">
+            Required Skills :
+        </div>
+        <div class=" col-sm-10">
+            @Model.Skills
+        </div>
+
+    </div>
+
+    <div class="row panel-body">
+        <div class="col-sm-2">
+            Job Description :
+        </div>
+        <div class=" col-sm-10">
+            @Model.Description
+        </div>
+
+    </div>
+    <div class="row panel-body">
+        <div class="col-sm-4">
+            Last Date :  27 November 2018
+        </div>
+        <div class=" col-sm-4">
+            Currently Available :   @Html.DisplayFor(model => model.IsActive)
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+
+    <div class="row panel-body">
+        <div class="col-sm-4">
+            Email  :  @Model.EmailID
+        </div>
+        <div class=" col-sm-4">
+            Contact Person :   @Model.ContactPerson
+        </div>
+        <div class="col-sm-4">
+            Phone Number :@Model.PhoneNumber
+        </div>
+    </div>
+
+
+    <div class="row panel-body">
+        <div class="col-sm-2">
+            Benefits :
+        </div>
+        <div class=" col-sm-10">
+            @Model.Benefits
+        </div>
+    </div>
+
+
+
+    <div class="row panel-footer">
+
+        <div class=" col-sm-12">
+
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

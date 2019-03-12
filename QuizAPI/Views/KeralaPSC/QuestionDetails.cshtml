@@ -1,0 +1,56 @@
+﻿<div class="container">
+    <h1>@ViewBag.Heading</h1>
+    <h4 id="Questionid"></h4>
+    @{
+        Html.RenderPartial("/Views/Shared/QuestionViewerWithID.cshtml");
+    }
+    <div>
+        <p style="text-align:center ;padding-right :10px">
+            <button type="button" id="newQstn" class="btn btn-info" onclick="Newclicked()"> New Questions</button>
+
+        </p>
+    </div>
+    <p>To Practice Kerala PSC Questions and Previous Questions  click here <a href="@Url.Action("Index", "KeralaPSC")">Free English Kerala PSC Questions</a> </p>
+    <div>
+        @{
+            Html.RenderPartial("/Views/Shared/_CommentBox.cshtml");
+        }
+    </div>
+
+
+</div>
+
+<style>
+    #newQstn {
+        display: block; /* Hidden by default */
+       
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: red; /* Set a background color */
+        color: white; /* Text color */
+        cursor: pointer; /* Add a mouse pointer on hover */
+      
+        border-radius: 10px; /* Rounded corners */
+        font-size: 18px; /* Increase font size */
+    }
+
+        #newQstn:hover {
+            background-color: #555; /* Add a dark-grey background on hover */
+        }
+   
+</style>
+<script>
+
+
+    $(Document).ready(function () {
+
+        $("#new50Qstn").text("Try Another Question");
+       
+        
+
+    });
+    function Newclicked() {
+        var varAppend = "?1343";
+        window.location.href = window.location.href.replace(".com", ".com" + varAppend);
+    }
+</script>

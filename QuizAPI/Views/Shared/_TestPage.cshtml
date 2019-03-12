@@ -1,0 +1,56 @@
+﻿
+<script src="~/Scripts/TestEngine.js?10"></script>
+<div class="container">
+
+    <div id="ResultDiv"></div>
+    <div id="timer"></div>
+    <div id="MainCont">
+
+    </div>
+
+
+
+    <div>
+        <p style="text-align:center ;padding-right :10px">
+
+            <button type="button" id="Next" class="btn btn-warning">Next</button>
+        </p>
+    </div>
+
+    <div>
+        <p style="text-align:center ;padding-right :10px">
+            <button type="button" id="Submit" class="btn btn-info">Submit</button>
+            <button type="button" id="TryAgain" class="btn btn-warning">Try Again </button>
+        </p>
+    </div>
+
+    <div id="AnswerArea">
+
+    </div>
+
+
+
+    <br />
+
+
+
+
+    <div id='loadingmessage' style='display:none'>
+        <img src="~/Content/Images/bolt.gif" class="img_responsive" />
+    </div>
+
+
+
+
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var uri = '@ViewBag.uri';
+
+        var param =  @ViewBag.param;
+        GetData(uri, param)
+    });
+
+</script>

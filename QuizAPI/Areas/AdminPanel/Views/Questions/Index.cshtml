@@ -1,0 +1,105 @@
+﻿@model IEnumerable<QuizAPI.Models.Question>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Certification.CertificationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KnowledgeArea.KnowledgeAreaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LanguageMaster.LanguageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullQuestion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnswerOption1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnswerOption2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnswerOption3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnswerOption4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectAnswerIndex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreaofKnowledge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnswerExplanation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isDisplayOnly)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Certification.CertificationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KnowledgeArea.KnowledgeAreaName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LanguageMaster.LanguageName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullQuestion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnswerOption1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnswerOption2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnswerOption3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnswerOption4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorrectAnswerIndex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreaofKnowledge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnswerExplanation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isDisplayOnly)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.QuestionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.QuestionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.QuestionId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<QuizAPI.Models.JobFieldArea>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobField.JobFieldName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobAreaName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobField.JobFieldName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobAreaName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.JobAreaId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.JobAreaId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.JobAreaId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,26 @@
+﻿@model QuizAPI.Models.JobField
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JobField</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JobFieldName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobFieldName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.JobFieldId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

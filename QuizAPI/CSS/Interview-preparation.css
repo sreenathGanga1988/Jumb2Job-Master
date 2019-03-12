@@ -1,0 +1,55 @@
+.interview-preparation h1 {
+    color: red;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 300%;
+    text-align: center;
+    background-color: #d9dade;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.interview-preparation article {
+    padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .interview-preparation article p {
+        font-size: 22px;
+    }
+
+    .interview-preparation article h2 {
+        color: red;
+        font-size: 300%;
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    .interview-preparation article h3 {
+        color: #1a39e5;
+        font-size: 220%;
+        font-family: "Times New Roman", Times, serif;
+    }
+
+.interview-preparation .image-wrapper {
+    max-width: 500px;
+    height: auto;
+    float: left;
+    padding-bottom: 0px;
+}
+
+.interview-preparation .image-wrapper1 {
+    max-width: 500px;
+    height: auto;
+    float: right;
+    padding-bottom: 0px;
+}
+
+    .interview-preparation .image-wrapper1 img {
+        width: 100%;
+    }
+
+.interview-preparation .image-wrapper img {
+    width: 100%;
+}

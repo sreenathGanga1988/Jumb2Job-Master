@@ -1,0 +1,35 @@
+﻿.genuinity-header h1 {
+    color: #131670;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 300%;
+    text-align: center;
+}
+
+.genuinity-content article h1 {
+    color: white;
+    background-color: #034f84;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 200%;
+    text-align: center;
+}
+
+.genuinity-step {
+    background-color: #92a8d1;
+}
+
+.genuinity-content td {
+    padding: 15px;
+    text-align: left;
+    height: 50px;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.genuinity-content table {
+    width: 100%;
+    background-color: #bfc9ca;
+}
+
+.genuinity-content td:nth-child(1) {
+    white-space: nowrap;
+}

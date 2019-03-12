@@ -1,0 +1,20 @@
+﻿<div class="container">
+
+    @*var param = { certificationId: 3, languageID: 1,  };*@
+
+
+    <h1>@ViewBag.Heading</h1>
+    @{
+        Html.RenderPartial("/Views/Shared/_QstnViewer.cshtml");
+    }
+    <p>To Study Kerala PSC Questions in Malayalam,  click here <a href="@Url.Action("PSCMalayalamQuestions", "KeralaPSC")">Free English Kerala PSC Questions</a> </p>
+    <div>
+        @{
+            Html.RenderPartial("/Views/Shared/_CommentBox.cshtml");
+        }
+    </div>
+
+
+</div>
+
+

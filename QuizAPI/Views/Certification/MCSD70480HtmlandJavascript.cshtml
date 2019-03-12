@@ -1,0 +1,14 @@
+﻿
+<div class="container">
+    <h1>@ViewBag.Heading</h1>
+    @{
+        Html.RenderPartial("/Views/Shared/_QstnViewer.cshtml");
+    }
+
+    <div>
+        @{
+            Html.RenderPartial("/Views/Shared/_CommentBox.cshtml");
+        }
+    </div>
+</div>
+

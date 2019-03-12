@@ -1,0 +1,45 @@
+﻿@model IEnumerable<QuizAPI.Models.KnowledgeArea>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Certification.CertificationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KnowledgeAreaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Certification.CertificationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KnowledgeAreaName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.KnowledgeAreaId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.KnowledgeAreaId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.KnowledgeAreaId })
+        </td>
+    </tr>
+}
+
+</table>

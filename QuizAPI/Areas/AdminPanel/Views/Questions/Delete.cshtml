@@ -1,0 +1,128 @@
+﻿@model QuizAPI.Models.Question
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Certification.CertificationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Certification.CertificationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KnowledgeArea.KnowledgeAreaName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KnowledgeArea.KnowledgeAreaName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageMaster.LanguageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LanguageMaster.LanguageName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullQuestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerOption1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerOption1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerOption2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerOption2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerOption3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerOption3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerOption4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerOption4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectAnswerIndex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectAnswerIndex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaofKnowledge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaofKnowledge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerExplanation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerExplanation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDisplayOnly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isDisplayOnly)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

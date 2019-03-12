@@ -1,0 +1,169 @@
+﻿<h1>@ViewBag.Heading </h1>
+
+<style>
+    .btn {
+        margin-bottom: 5px;
+    }
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Online PSC Exams</div>
+    <div class="panel-body">
+        @Html.ActionLink("English Online PSC Exam ", "OnlineEnglishPSCTest", "KeralaPSC", new { @class = "btn btn-success" })
+        @Html.ActionLink("Malayalam Online PSC Exam ", "OnlineMalayalamPSCTest", "KeralaPSC", new { @class = "btn btn-success" })
+    </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Sample PSC Questions</div>
+    <div class="panel-body">
+        @Html.ActionLink("English PSC Questions", "EnglishPSCQuestions", "KeralaPSC", new { @class = "btn btn-success" })
+        @Html.ActionLink("Malayalam  PSC Questions", "PSCMalayalamQuestions", "KeralaPSC", new { @class = "btn btn-success" })
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">University Assistant 2019 training</div>
+    <div class="panel-body">
+        @Html.ActionLink("University Assistant Questions", "KeralaPSCUniversityAssistantQuestions", "KeralaPSC", new { @class = "btn btn-success" })
+        @Html.ActionLink("University Assistant Test", "KeralaPSCUniversityAssistantTest", "KeralaPSC", new { @class = "btn btn-success" })
+        @*@Html.ActionLink("Questions", "Questions", "KeralaPSC", new { @certificationId = 1, @languageID = 1, @knowledgeAeadid = 1, @Number = 5 }, "")*@
+    </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">LDC 2020 training</div>
+    <div class="panel-body">
+        @Html.ActionLink("LDC Questions", "LDCSampleQuestions", "KeralaPSC", new { @class = "btn btn-success" })
+        @Html.ActionLink("LDC Test", "KeralaPSCLDCTest", "KeralaPSC", new { @class = "btn btn-success" })
+
+    </div>
+
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">LGS 2019 training</div>
+    <div class="panel-body">
+        @Html.ActionLink("LGS Questions", "LGSSampleQuestions", "KeralaPSC", new { @class = "btn btn-success" })
+        @Html.ActionLink("LGS Test", "KeralaPSCLGCTest", "KeralaPSC", new { @class = "btn btn-success" })
+
+    </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">VEO 2019 training</div>
+    <div class="panel-body">
+        @Html.ActionLink("VEO Questions", "VEOSampleQuestions", "KeralaPSC", new { @class = "btn btn-success" })
+        @Html.ActionLink("VEO Test", "KeralaPSCVEOTest", "KeralaPSC", new { @class = "btn btn-success" })
+
+    </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Previous  Exam paper</div>
+    <div id="MainCont" class="panel-body">
+
+
+
+    </div>
+</div>
+
+
+
+
+<script>
+
+
+    $(document).ready(function () {
+
+
+
+        var uri = '/api/pmp/GetpreviousQuestionName';
+        var param = @Html.Raw("{certificationid:2}")
+        GetData(uri, param)
+        param = "{certificationid:3}";
+
+    });
+
+
+
+    function GetData(uri, param) {
+
+
+        $("#MainCont").empty();
+        $('#loadingmessage').show();
+        $.ajax({
+            url: uri,
+            type: 'GET',
+            data: param,
+            dataType: 'json',
+            success: function (data, textStatus, xhr) {
+
+
+
+                $.each(data, function (index, val) {
+
+
+
+                    if (val == null || val === false || val.length == 0) {
+
+                    }
+                    else {
+
+
+                        $("#MainCont").append("  <a class=\"btn btn-success\"  href=\"/KeralaPSC/PreviousQuestions?exam=" + val + "\">" + val + "</a>");
+
+
+
+                    }
+
+
+
+
+                });
+
+                $('#loadingmessage').hide();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        });
+    }
+
+
+
+
+
+
+</script>
+<div>
+    @{
+        Html.RenderPartial("/Views/Shared/_CommentBox.cshtml");
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

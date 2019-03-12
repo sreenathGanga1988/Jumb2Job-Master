@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "PMP,MCSD,MCSA Certification Sample Questions";
+}
+
+<h1>@ViewBag.Heading </h1>
+<style>
+    .btn {
+        margin-bottom: 5px;
+    }
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Project Management Professional (PMP) Certification</div>
+    <div class="panel-body">
+        @Html.ActionLink("Sample PMP Questions", "SamplePMPQuestion", "Certification", new { @class = "btn btn-success" })
+        @Html.ActionLink("PMP Mock Test", "PMPMockTest", "Certification", new { @class = "btn btn-success" })
+    </div>
+    <div class="panel-footer"></div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">ITIL Certifcations</div>
+    <div class="panel-body btn-toolbar">
+        @Html.ActionLink("English PSC Questions", "EnglishPSCQuestions", "KeralaPSC", new { @class = "btn btn-success" })
+        @Html.ActionLink("Malayalam  PSC Questions", "PSCMalayalamQuestions", "KeralaPSC", new { @class = "btn btn-success" })
+    </div>
+    <div class="panel-footer"></div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">ITIL Certifcations</div>
+    <div class="panel-body">
+        @Html.ActionLink("English PSC Questions", "EnglishPSCQuestions", "KeralaPSC", new { @class = "btn btn-success" })
+        @Html.ActionLink("Malayalam  PSC Questions", "PSCMalayalamQuestions", "KeralaPSC", new { @class = "btn btn-success" })
+    </div>
+    <div class="panel-footer"></div>
+</div>

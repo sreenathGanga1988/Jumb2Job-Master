@@ -1,0 +1,16 @@
+﻿<div class="container">
+    <h1>@ViewBag.Heading</h1>
+    @{
+        Html.RenderPartial("/Views/Shared/_QstnViewer.cshtml");
+    }
+    <p>To Study Kerala PSC Questions in English,  click here <a href="@Url.Action("EnglishPSCQuestions", "KeralaPSC")">Free English Kerala PSC Questions</a> </p>
+    <div>
+        @{
+            Html.RenderPartial("/Views/Shared/_CommentBox.cshtml");
+        }
+    </div>
+
+
+</div>
+
+

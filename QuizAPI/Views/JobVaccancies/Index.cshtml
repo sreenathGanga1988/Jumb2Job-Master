@@ -1,0 +1,89 @@
+﻿@model IEnumerable<QuizAPI.Models.JobVaccancy>
+
+
+<h3>Available Job Vaccancies</h3>
+
+<p>
+    @Html.ActionLink("Add new Vaccancy", "Create")
+</p>
+
+
+
+@foreach (var item in Model)
+{
+    <div class="panel panel-success">
+        <div class="row panel-heading">
+            <div class="col-sm-7 ">
+
+                <p class="h4"><strong>@item.JobTitle</strong></p>
+            </div>
+            <div class=" col-sm-1">
+                JB
+            </div>
+            <div class=" col-sm-4">
+                @item.CountryMaster.CountryName , @item.JobLocation  <br />
+                @item.PostedDate
+            </div>
+        </div>
+
+
+        <div class="row panel-body">
+            <div class=" col-sm-7">
+                <p class="font-italic"><i> @item.CompanyName</i></p>
+
+            </div>
+            <div class=" col-sm-1">
+
+            </div>
+            <div class=" col-sm-4">
+
+            </div>
+        </div>
+
+        <div class="row panel-body">
+            <div class="col-sm-4">
+                Job Type :  @item.EmploymentType
+            </div>
+            <div class=" col-sm-4">
+                Career level :@item.CareerLevel
+            </div>
+            <div class="col-sm-4">
+                Min Exp : @item.MinimumWorkExperience
+            </div>
+        </div>
+
+        <div class="row panel-body">
+            <div class="col-sm-4">
+                Monthly Salary :@item.MonthlySalary
+            </div>
+            <div class=" col-sm-4">
+                Company Size : @item.CompanySize
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+        <div class="row panel-body">
+            <div class="col-sm-2">
+                Required Skills :
+            </div>
+            <div class=" col-sm-10">
+                @item.Skills
+            </div>
+
+        </div>
+
+
+        <div class="row panel-footer">
+            <div class="col-sm-4">
+                Last Date :  27 November 2018
+            </div>
+            <div class=" col-sm-8">
+
+                @Html.ActionLink("Show Details", "Details", new { id = item.JobID }, new { @class = "btn btn-primary" })
+            </div>
+
+        </div>
+    </div>
+}
+

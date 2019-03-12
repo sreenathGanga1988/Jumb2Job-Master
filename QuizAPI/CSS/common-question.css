@@ -1,0 +1,56 @@
+﻿.common-question {
+    background-color: #fbefcc;
+}
+
+    .common-question .accordionQst {
+        background-color: #f4a688;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 30px;
+        transition: 0.4s;
+    }
+
+    .common-question .active, .accordion:hover {
+        background-color: #f9ccac;
+    }
+
+    .common-question .panel {
+        padding: 0 18px;
+        background-color: white;
+        overflow: hidden;
+        font-family: sans-serif;
+        font-size: 22px;
+    }
+
+    .common-question h2 {
+        color: black;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 300%;
+        text-align: center;
+        <!-- background-color: #87bdd8; -->
+    }
+
+.common-question-image {
+    max-width: 800px;
+    max-height: 550px;
+    height: auto;
+    float: center;
+    overflow: hidden;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .common-question-image img {
+        width: 100%;
+        height: auto;
+    }
+
+.common-question p i {
+    font-size: 18px;
+}
