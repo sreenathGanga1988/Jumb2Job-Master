@@ -77,8 +77,22 @@ namespace QuizAPI.Controllers
 
 
 
+        [Route("Certification/DHASampleQuestionForNurses")]
+        [Route("Fdha-exam-sample-questions-for-nurses")]
+        public ActionResult DHASampleQuestionForNurses()
+        {
 
+            ViewBag.Title = "Free dha exam sample questions for nurses";
+            ViewBag.MetaDescription = "DHA Question Paper-Explanations and Answer for Nurse .Here Frequently Asked Questions  moh and had Licencing exams";
+            ViewBag.MetaKeywords = "MCSD -70-480 Questions,Free Mirosoft certification Questions, ";
 
+            ViewBag.Heading = " Frequently asked dha exam sample questions for nurses free";
+
+            ViewBag.uri = "/api/pmp/GetQuestionofKnowledgeArea";
+            ViewBag.param = "{ certificationId: 4, languageID: 1, knowledgeAeadid: 1, Number: 30 }";
+
+            return View();
+        }
 
 
 

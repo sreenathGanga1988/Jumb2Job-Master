@@ -313,11 +313,6 @@
     <Content Include="Areas\OnlineTest\Views\Test\TestEngine.cshtml" />
     <Content Include="Areas\AdminPanel\Views\_ViewStart.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\Questions\Create.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\Questions\Delete.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\Questions\Details.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\Questions\Edit.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\Questions\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Certifications\Create.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Certifications\Delete.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Certifications\Details.cshtml" />
@@ -358,6 +353,11 @@
     <Content Include="Areas\AdminPanel\Views\Exams\Edit.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Exams\Index.cshtml" />
     <Content Include="Areas\OnlineTest\Views\Login\Index.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Questions\Create.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Questions\Delete.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Questions\Details.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Questions\Edit.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Questions\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Home.js" />

@@ -23,18 +23,18 @@ namespace QuizAPI.Controllers
             ViewBag.MetaDescription = "Jobs in Uae and India ,Hot Job Vaccancies,";
             ViewBag.MetaKeywords = "Driver job ,It Job ";
 
-            var jobVaccancys = db.JobVaccancys.Include(j => j.CountryMaster).Include(j => j.JobFieldArea);
+            var jobVaccancys = db.JobVaccancys.Include(j => j.CountryMaster).Include(j => j.JobFieldArea).OrderByDescending(u => u.JobID);
             string Tittle = "";
 
             if (countryid != 0)
             {
-                jobVaccancys = jobVaccancys.Where(u => u.CountryId == countryid);
+                jobVaccancys = jobVaccancys.Where(u => u.CountryId == countryid).OrderByDescending(u=>u.JobID);
 
                 Tittle = Tittle + jobVaccancys.FirstOrDefault().CountryMaster.CountryName.ToString() + "Jobs";
             }
             if (jobfeildId != 0)
             {
-                jobVaccancys = jobVaccancys.Where(u => u.JobFieldArea.JobFieldId == jobfeildId);
+                jobVaccancys = jobVaccancys.Where(u => u.JobFieldArea.JobFieldId == jobfeildId).OrderByDescending(u => u.JobID); ;
                 Tittle = jobVaccancys.FirstOrDefault().JobFieldArea.JobAreaName.ToString() + "Jobs" + Tittle;
             }
 

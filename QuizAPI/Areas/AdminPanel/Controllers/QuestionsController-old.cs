@@ -17,7 +17,7 @@ namespace QuizAPI.Areas.AdminPanel.Controllers
         // GET: AdminPanel/Questions
         public ActionResult Index()
         {
-            var questions = db.Questions.Include(q => q.Certification).Include(q => q.Exam).Include(q => q.KnowledgeArea).Include(q => q.LanguageMaster).OrderByDescending(q => q.QuestionId).Take(50);
+            var questions = db.Questions.Include(q => q.Certification).Include(q => q.KnowledgeArea).Include(q => q.LanguageMaster).OrderByDescending(q=>q.QuestionId).Take(50);
             return View(questions.ToList());
         }
 
@@ -40,7 +40,6 @@ namespace QuizAPI.Areas.AdminPanel.Controllers
         public ActionResult Create()
         {
             ViewBag.CertificationId = new SelectList(db.Certifications, "CertificationId", "CertificationName");
-            ViewBag.ExamId = new SelectList(db.Exams, "ExamId", "ExamName");
             ViewBag.KnowledgeAreaId = new SelectList(db.KnowledgeAreas, "KnowledgeAreaId", "KnowledgeAreaName");
             ViewBag.LanguageId = new SelectList(db.LanguageMasters, "LanguageId", "LanguageName");
             return View();
@@ -48,10 +47,10 @@ namespace QuizAPI.Areas.AdminPanel.Controllers
 
         // POST: AdminPanel/Questions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "QuestionId,CertificationId,ExamId,KnowledgeAreaId,LanguageId,FullQuestion,AnswerOption1,AnswerOption2,AnswerOption3,AnswerOption4,CorrectAnswerIndex,Mark,AreaofKnowledge,AnswerExplanation,AskedOn,isDisplayOnly")] Question question)
+        public ActionResult Create([Bind(Include = "QuestionId,CertificationId,KnowledgeAreaId,LanguageId,FullQuestion,AnswerOption1,AnswerOption2,AnswerOption3,AnswerOption4,CorrectAnswerIndex,Mark,AreaofKnowledge,AnswerExplanation,isDisplayOnly")] Question question)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +60,6 @@ namespace QuizAPI.Areas.AdminPanel.Controllers
             }
 
             ViewBag.CertificationId = new SelectList(db.Certifications, "CertificationId", "CertificationName", question.CertificationId);
-            ViewBag.ExamId = new SelectList(db.Exams, "ExamId", "ExamName", question.ExamId);
             ViewBag.KnowledgeAreaId = new SelectList(db.KnowledgeAreas, "KnowledgeAreaId", "KnowledgeAreaName", question.KnowledgeAreaId);
             ViewBag.LanguageId = new SelectList(db.LanguageMasters, "LanguageId", "LanguageName", question.LanguageId);
             return View(question);
@@ -80,7 +78,6 @@ namespace QuizAPI.Areas.AdminPanel.Controllers
                 return HttpNotFound();
             }
             ViewBag.CertificationId = new SelectList(db.Certifications, "CertificationId", "CertificationName", question.CertificationId);
-            ViewBag.ExamId = new SelectList(db.Exams, "ExamId", "ExamName", question.ExamId);
             ViewBag.KnowledgeAreaId = new SelectList(db.KnowledgeAreas, "KnowledgeAreaId", "KnowledgeAreaName", question.KnowledgeAreaId);
             ViewBag.LanguageId = new SelectList(db.LanguageMasters, "LanguageId", "LanguageName", question.LanguageId);
             return View(question);
@@ -88,10 +85,10 @@ namespace QuizAPI.Areas.AdminPanel.Controllers
 
         // POST: AdminPanel/Questions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "QuestionId,CertificationId,ExamId,KnowledgeAreaId,LanguageId,FullQuestion,AnswerOption1,AnswerOption2,AnswerOption3,AnswerOption4,CorrectAnswerIndex,Mark,AreaofKnowledge,AnswerExplanation,AskedOn,isDisplayOnly")] Question question)
+        public ActionResult Edit([Bind(Include = "QuestionId,CertificationId,KnowledgeAreaId,LanguageId,FullQuestion,AnswerOption1,AnswerOption2,AnswerOption3,AnswerOption4,CorrectAnswerIndex,Mark,AreaofKnowledge,AnswerExplanation,isDisplayOnly")] Question question)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +97,6 @@ namespace QuizAPI.Areas.AdminPanel.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CertificationId = new SelectList(db.Certifications, "CertificationId", "CertificationName", question.CertificationId);
-            ViewBag.ExamId = new SelectList(db.Exams, "ExamId", "ExamName", question.ExamId);
             ViewBag.KnowledgeAreaId = new SelectList(db.KnowledgeAreas, "KnowledgeAreaId", "KnowledgeAreaName", question.KnowledgeAreaId);
             ViewBag.LanguageId = new SelectList(db.LanguageMasters, "LanguageId", "LanguageName", question.LanguageId);
             return View(question);
