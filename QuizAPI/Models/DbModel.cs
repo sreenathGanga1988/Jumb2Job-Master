@@ -166,32 +166,6 @@ namespace QuizAPI.Models
     }
 
 
-    public class Candidate
-    {
-        [Key]
-        public int CandidateId { get; set; }
-
-        [Required(ErrorMessage = "Enter CandidateName")]
-        [Display(Name = "Candidate Name")]
-        public string CandidateName { get; set; }
-
-        [Required(ErrorMessage = "Enter Candidate Email")]
-        [Display(Name = " Email/Username")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        public string CandidateEmail { get; set; }
-
-
-        [Required(ErrorMessage = "Enter Password")]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [Required(ErrorMessage = "Confirm Password")]
-        [Display(Name = "Confirm Password")]
-        [Compare("Password")]
-        public string ConfirmPasswod { get; set; }
-
-        public virtual List<CandidateExam> CandidateExam { get; set; }
-    }
 
 
 
@@ -370,6 +344,111 @@ namespace QuizAPI.Models
         [Display(Name = "Page  SlugName")]
         public string PageSlugName { get; set; }
     }
+
+
+
+
+    public class Candidate
+    {
+        [Key]
+        public int CandidateId { get; set; }
+
+        [Required(ErrorMessage = "Enter CandidateName")]
+        [Display(Name = "Candidate Name")]
+        public string CandidateName { get; set; }
+
+        public string CandidateEmail { get; set; }
+
+        public string Password { get; set; }
+
+        public DateTime AddedDate { get; set; }
+
+
+
+    }
+    public class CandidateLogin
+    {
+
+        [Key]
+        public int CandidateLoginId { get; set; }
+
+        public int CandidateId { get; set; }
+
+        public DateTime LogDate { get; set; }
+
+    }
+
+    public class ExamTableMain
+    {
+        [Key]
+        public int ExamTableMainId { get; set; }
+
+        public String ExamName { get; set; }
+        public int numberofQuestion { get; set; }
+        public int ExamMinutes { get; set; }
+        public int LanguageId { get; set; }
+        public int TotalQuestion { get; set; }
+        public int Cuttoff { get; set; }
+        public Decimal MarkPerQstn { get; set; }
+        public Decimal NegativemarkPerQstn { get; set; }
+        public virtual List<ExamTableKnowledgeArea> ExamTableKnowledgeAreas { get; set; }
+    }
+
+    public class ExamTableKnowledgeArea
+    {
+        [Key]
+        public int ExamTableKnowledgeAreaId { get; set; }
+
+        public int ExamTableMainId { get; set; }
+        public int KnowledgeAreaID { get; set; }
+        public int Percentage { get; set; }
+        public virtual ExamTableMain ExamTableMain { get; set; }
+        public virtual KnowledgeArea KnowledgeArea { get; set; }
+    }
+
+    public class CandidateResult
+    {
+        [Key]
+        public int CandidateResultId { get; set; }
+        public int CandidateId { get; set; }
+        public int ExamTableMainId { get; set; }
+        public int correctAnswercount { get; set; }
+        public int WrongAnswerCount { get; set; }
+        public int NoAnswerCount { get; set; }
+        public int UsedMinutes { get; set; }
+        public int TotalQuestion { get; set; }
+        public Decimal TotalMark { get; set; }
+        public Decimal Negativemark { get; set; }
+        public Decimal FinalMark { get; set; }
+        public DateTime ExamDate { get; set; }
+
+        public virtual Candidate Candidate { get; set; }
+        public virtual ExamTableMain ExamTableMain { get; set; }
+        public virtual List<CandidateResultDetail> CandidateResultDetails { get; set; }
+    }
+
+
+    public class CandidateResultDetail
+    {
+        [Key]
+        public int CandidateResultDetailId { get; set; }
+        public int CandidateResultId { get; set; }
+        public int KnowledgeAreaID { get; set; }
+        public int TotalQstn { get; set; }
+        public int WrongAnswersCount { get; set; }
+        public int NoAnswerCount { get; set; }
+        public int CorrectAnswerCount { get; set; }
+        public virtual KnowledgeArea KnowledgeArea { get; set; }
+        public virtual CandidateResult CandidateResult { get; set; }
+    }
+
+
+
+
+
+
+
+
 
 }
 

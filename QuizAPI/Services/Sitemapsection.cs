@@ -237,7 +237,9 @@ namespace QuizAPI.Services
                  Url = AbsoluteRouteUrl(urlHelper, "", new
                  {
                      action = "KeralaPSCUniversityAssistantQuestions",
-                     controller = "KeralaPSC"
+                     controller = "KeralaPSC",
+                     
+                    
                  }),
                  Priority = 0.9,
                  LastModified = new DateTime(2018, 12, 13),
@@ -245,7 +247,37 @@ namespace QuizAPI.Services
              });
 
 
+            nodes.Add(
+           new SitemapNode()
+           {
+               Url = AbsoluteRouteUrl(urlHelper, "", new
+               {
+                   action = "index",
+                   controller = "JobVaccanies"
+              
 
+               }),
+               Priority = 0.9,
+               LastModified = new DateTime(2018, 12, 13),
+               Frequency = SitemapFrequency.Weekly
+           });
+
+
+            nodes.Add(
+          new SitemapNode()
+          {
+              Url = AbsoluteRouteUrl(urlHelper, "", new
+              {
+                  action = "TestEngine",
+                  controller = "test",
+                  Area = "OnlineTest"
+
+
+              }),
+              Priority = 0.9,
+              LastModified = new DateTime(2019, 03, 15),
+              Frequency = SitemapFrequency.Weekly
+          });
 
 
 

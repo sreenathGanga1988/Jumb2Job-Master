@@ -37,6 +37,13 @@ new MigrateDatabaseToLatestVersion<QuizContext, QuizAPI.Migrations.Configuration
     public System.Data.Entity.DbSet<JobField> JobFields { get; set; }
     public System.Data.Entity.DbSet<JobVaccancy> JobVaccancys { get; set; }
     public System.Data.Entity.DbSet<SiteUrl> SiteUrls { get; set; }
+    public System.Data.Entity.DbSet<ExamTableMain> ExamTableMains { get; set; }
+    public System.Data.Entity.DbSet<ExamTableKnowledgeArea> ExamTableKnowledgeAreas { get; set; }
+    public System.Data.Entity.DbSet<CandidateLogin> CandidateLogins { get; set; }
+    public System.Data.Entity.DbSet<CandidateResult> CandidateResults { get; set; }
+    public System.Data.Entity.DbSet<CandidateResultDetail> CandidateResultDetails { get; set; }
+
+
 
     public System.Data.Entity.DbSet<CertificationQuestionLink> CertificationQuestionLinks { get; set; }
 
