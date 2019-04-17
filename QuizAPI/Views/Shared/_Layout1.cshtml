@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿ï»¿<!DOCTYPE html>
 <html>
 
 <head>
@@ -41,7 +41,6 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
     <meta name="google-site-verification" content="Z73f1wMzzcYvw03fzKKCpnn9OiVOWEFoYdqsGSTkIz4" />
     <link href="~/CSS/menu.css" rel="stylesheet" />
-
 
     <script>
 
@@ -89,23 +88,23 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Index", "JobVaccancies", new { Area = "" })">Job Vacancies </a></li>
+                    <li><a href="@Url.Action("Index", "JobVaccancies")" target="_bl target=" _blank">Job Vacancies </a></li>
                 </ul>
                 <ul class="nav navbar-nav">
 
-                    <li class="active"><a href="@Url.Action("index", "Home", new { Area = "" } )">Home</a></li>
+                    <li class="active"><a href="@Url.Action("index", "Home" )">Home</a></li>
 
 
 
 
                     <li class="dropdown">
-                        <a href="" data-toggle="dropdown" class="dropdown-toggle">PSC Training<span class="caret"></span></a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">PSC Training<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("index", "Keralapsc", new { Area = "" })">Online PSC Questions </a></li>
+                            <li><a href="@Url.Action("Index", "KeralaPSC")">Online PSC Test </a></li>
                             <li class="divider"></li>
-                            <li><a href="@Url.Action("TestEngine", "Test", new { Area = "OnlineTest" })">PSC Mock Exam </a></li>
+                            <li><a href="@Url.Action("EnglishPSCQuestions", "KeralaPSC")">English PSC Questions </a></li>
                             <li class="divider"></li>
-                            <li><a href="@Url.Action("PSCMalayalamQuestions", "KeralaPSC", new { Area = "" })">Malayalam  PSC Questions </a></li>
+                            <li><a href="@Url.Action("PSCMalayalamQuestions", "KeralaPSC")">Malayalam  PSC Questions </a></li>
 
                         </ul>
 
@@ -114,27 +113,46 @@
 
 
                     <li class="dropdown">
-                        <a href="" data-toggle="dropdown" class="dropdown-toggle">Certification Questions<span class="caret"></span></a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Certification Questions<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown ">
+                                <a href="@Url.Action("PMPOnline", "Certification")">PMP</a>
 
-                                <a href="@Url.Action("PMPOnline", "Certification", new { Area = "" })">PMP</a>
+                                @*<ul class="dropdown-menu ">
+                                    <li><a href="@Url.Action("SamplePMPQuestion", "Certification")">Sample PMP Questions</a></li>
 
+                                    <li class="divider"></li>
+
+
+                                    <li>  <a href="/Pages/Certification/pmpsamplequestions.html">Practise Online PMP Test</a>            </li>
+
+                                </ul>*@
                             </li>
 
                             <li class="divider"></li>
                             <li class="dropdown ">
-                                <a href="@Url.Action("MCSDQuestions", "Certification", new { Area = "" })">MCSD</a>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">CCNA<span class="caret"></span></a>
+
+                                <ul class="dropdown-menu ">
+                                    <li><a href="@Url.Action("index", "Home" )">>Sample CCNA Questions </a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="@Url.Action("index", "Home" )">>Practise Online CCNA Test</a></li>
+                                </ul>
                             </li>
                             <li class="divider"></li>
                             <li class="dropdown ">
-                                <a href="@Url.Action("MCSDQuestions", "Certification", new { Area = "" })">CCNA</a>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">MCSD<span class="caret"></span></a>
+
+                                <ul class="dropdown-menu ">
+                                    <li><a href="@Url.Action("MCSDQuestions", "Certification")">Sample MCSD Questions </a></li>
+
+
+                                    <li class="divider"></li>
+                                    <li><a href="@Url.Action("index", "Home" )">>Practise Online MCSD Test</a></li>
+                                </ul>
                             </li>
 
-                            <li class="divider"></li>
-                            <li class="dropdown ">
-                                <a href="@Url.Action("DHAOnline", "Certification", new { Area = "" })">DHA</a>
-                            </li>
+
 
 
 
@@ -146,25 +164,25 @@
 
                     <li class="dropdown ">
 
-                        <a href="" data-toggle="dropdown" class="dropdown-toggle">Interview Tips & Questions<span class="caret"></span></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle">Interview Tips & Questions<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="@Url.Action("PreparingforInterview", "HRInterview", new { Area = "" })">Preparing for a Interview</a>
+                                <a href="@Url.Action("PreparingforInterview", "HRInterview")">Preparing for a Interview</a>
                             </li>
                             <li>
-                                <a href="" data-toggle="dropdown" class="dropdown-toggle">HR Interview Tips<span class="caret"></span></a>
+                                <a data-toggle="dropdown" class="dropdown-toggle">HR Interview Tips<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="@Url.Action("interviewdoesanddont", "HRInterview", new { Area = "" })">Do's and Don'ts of Interview</a>
+                                        <a href="@Url.Action("interviewdoesanddont", "HRInterview")">Do's and Don'ts of Interview</a>
                                     </li>
                                     <li class="divider"></li>
 
                                     <li>
-                                        <a href="@Url.Action("commonhrquestions", "HRInterview", new { Area = "" } )">Common HR Questions</a>
+                                        <a href="@Url.Action("commonhrquestions", "HRInterview" )">Common HR Questions</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="@Url.Action("hrinterviewtips", "HRInterview", new { Area = "" } )">Interview Tips</a>
+                                        <a href="@Url.Action("hrinterviewtips", "HRInterview" )">Interview Tips</a>
                                     </li>
                                 </ul>
                             </li>
@@ -178,10 +196,10 @@
 
                     <li class="dropdown ">
 
-                        <a href="" data-toggle="dropdown" class="dropdown-toggle">Job Certificates<span class="caret"></span></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle">Job Certificates<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="@Url.Action("uaeequivalancycertificate", "Documents", new { Area = "" })">UAE Equivalency/Genuinity Certificate</a>
+                                <a href="@Url.Action("uaeequivalancycertificate", "Documents")">UAE Equivalency/Genuinity Certificate</a>
 
                             </li>
 
@@ -192,10 +210,10 @@
 
                     <li class="dropdown ">
 
-                        <a href="" data-toggle="dropdown" class="dropdown-toggle">Tools and Utilities<span class="caret"></span></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle">Tools and Utilities<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="@Url.Action("PassWordStrengthCheck", "Utility", new { Area = "" })">PassWord Strength Analyzer</a>
+                                <a href="@Url.Action("PassWordStrengthCheck", "Utility")">PassWord Strength Analyzer</a>
 
                             </li>
 
@@ -233,6 +251,7 @@
 </body>
 
 </html>
+
 
 
 

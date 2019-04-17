@@ -246,6 +246,21 @@ namespace QuizAPI.Services
                  Frequency = SitemapFrequency.Weekly
              });
 
+            nodes.Add(
+           new SitemapNode()
+           {
+               Url = AbsoluteRouteUrl(urlHelper, "", new
+               {
+                   action = "PscNotes",
+                   controller = "KeralaPSC",
+
+
+               }),
+               Priority = 0.9,
+               LastModified = new DateTime(2019, 04, 17),
+               Frequency = SitemapFrequency.Weekly
+           });
+
 
             nodes.Add(
            new SitemapNode()

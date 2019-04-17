@@ -1,0 +1,21 @@
+﻿<h1>@ViewBag.Heading </h1>
+
+<style>
+    .btn {
+        margin-bottom: 5px;
+    }
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Online PMP Training Material</div>
+    <div class="panel-body">
+        @Html.ActionLink("Try PMP Questions Online (exam)", "PMPMockTest", "Certification", new { @class = "btn btn-success" })
+        @Html.ActionLink("Sample PMP Questions", "SamplePMPQuestion", "Certification", new { @class = "btn btn-success" })
+    </div>
+
+</div>
+<div>
+    @{
+        Html.RenderPartial("/Views/Shared/_CommentBox.cshtml");
+    }
+</div>

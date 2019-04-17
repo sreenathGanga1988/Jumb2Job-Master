@@ -1,0 +1,21 @@
+﻿<h1>@ViewBag.Heading </h1>
+
+<style>
+    .btn {
+        margin-bottom: 5px;
+    }
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Online DHA Training Material</div>
+    <div class="panel-body">
+        @Html.ActionLink("Try DHA Questions Online (exam)", "DHAMockTest", "Certification", new { @class = "btn btn-success" })
+        @Html.ActionLink("Sample DHA Questions", "DHASampleQuestionForNurses", "Certification", new { @class = "btn btn-success" })
+    </div>
+
+</div>
+<div>
+    @{
+        Html.RenderPartial("/Views/Shared/_CommentBox.cshtml");
+    }
+</div>

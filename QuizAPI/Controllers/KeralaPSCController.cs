@@ -304,5 +304,26 @@ namespace QuizAPI.Controllers
 
             return View();
         }
+
+
+
+
+        public ActionResult PSCNotes(int Id = 1)
+        {
+
+            var q = TopicNotesRepo.getTopicmasterdata(Id);
+
+            ViewBag.Title = q.TopicName + " Questions";
+            ViewBag.MetaDescription = q.TopicDescription + " Questions";
+            ViewBag.MetaKeywords = q.TopicName + "," + q.TopicDescription + "free online PSC Questions";
+
+            ViewBag.Heading = q.TopicName + " Questions  Online ";
+            ViewBag.uri = "/api/TopicNotesDataApi/get?id=" + Id + "";
+
+            ViewBag.param = "{ id:  " + Id + " }";
+            return View();
+        }
+
+
     }
 }

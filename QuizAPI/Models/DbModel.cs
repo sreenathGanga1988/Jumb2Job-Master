@@ -443,7 +443,45 @@ namespace QuizAPI.Models
     }
 
 
+    public class TopicMaster
+    {
+        [Key]
+        public int TopicMasterId { get; set; }
+        public int CertificationId { get; set; }
+        public string TopicName { get; set; }
+        public string TopicDescription { get; set; }
+        public virtual Certification Certification { get; set; }
+        public virtual List<TopicNote> TopicNotes { get; set; }
+    }
 
+
+    public class TopicNote
+    {
+        [Key]
+        public int TopicNoteId { get; set; }
+
+        public int TopicMasterId { get; set; }
+        public string NoteTittle { get; set; }
+        public string NoteDesc { get; set; }
+        public string AddedBy { get; set; }
+        public DateTime AddedDate { get; set; }
+        public virtual TopicMaster TopicMaster { get; set; }
+        public virtual List<TopicNoteComment> TopicNoteComments { get; set; }
+        public int NotesSequence { get; set; }
+    }
+
+    public class TopicNoteComment
+    {
+        [Key]
+        public int TopicNoteCommentId { get; set; }
+
+        public int TopicNoteId { get; set; }
+
+        public string TopicNoteCommentDesc { get; set; }
+        public string AddedBy { get; set; }
+        public DateTime AddedDate { get; set; }
+        public virtual TopicNote TopicNote { get; set; }
+    }
 
 
 

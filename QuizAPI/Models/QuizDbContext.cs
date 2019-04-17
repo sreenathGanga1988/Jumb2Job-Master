@@ -47,5 +47,10 @@ new MigrateDatabaseToLatestVersion<QuizContext, QuizAPI.Migrations.Configuration
 
     public System.Data.Entity.DbSet<CertificationQuestionLink> CertificationQuestionLinks { get; set; }
 
+    public System.Data.Entity.DbSet<QuizAPI.Models.TopicMaster> TopicMasters { get; set; }
+
+    public System.Data.Entity.DbSet<QuizAPI.Models.TopicNote> TopicNotes { get; set; }
+
+    public System.Data.Entity.DbSet<QuizAPI.Models.TopicNoteComment> TopicNoteComments { get; set; }
 
 }

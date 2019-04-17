@@ -1,30 +1,703 @@
-﻿<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+}
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/1.0.0-beta.1/ng-google-chart.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+<style>
+    .btnGreen {
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        background: none;
+        cursor: pointer;
+        padding: 15px 60px;
+        display: inline-block;
+        margin: 15px 30px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        outline: none;
+        position: relative;
+        background: #2ecc71;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+        border-radius: 50px;
+        border: 3px solid #fff;
+        color: #fff;
+        overflow: hidden;
+        white-space: normal;
+    }
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<h2>Test</h2>
+        .btnGreen:active {
+            border-color: #17954c;
+            color: #17954c;
+        }
 
-<div class="container">
-    <div>
-        <p style="text-align:center ;padding-right :10px">
-            <button type="button" id="Submit" class="btn btn-info">Submit</button>
-            <button type="button" class="btn btn-warning">Cancel</button>
+        .btnGreen:hover {
+            background: #24b662;
+        }
+
+        .btnGreen:active:before {
+            color: #17954c;
+        }
+
+
+    .login-page {
+        width: 300px;
+        padding: 8% 0 0;
+        margin: auto;
+    }
+
+    .logform {
+        position: relative;
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 300px;
+        margin: 0 auto 100px;
+        padding: 45px;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+
+        .logform input {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .logform button {
+            font-family: "Roboto", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #4CAF50;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            -webkit-transition: all 0.3 ease;
+            transition: all 0.3 ease;
+            cursor: pointer;
+        }
+
+            .logform button:hover, .logform button:active, .logform button:focus {
+                background: #43A047;
+            }
+
+        .logform .message {
+            margin: 15px 0 0;
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+
+            .logform .message a {
+                color: #4CAF50;
+                text-decoration: none;
+            }
+
+        .logform .register-form {
+            display: none;
+        }
+
+    .CorrectAnswerBack {
+        background-color: lightgreen;
+    }
+
+    .WrongAnswerBack {
+        background-color: palevioletred;
+    }
+</style>
+
+<script>
+    "use strict";
+
+    /*We need to manually start angular as we need to
+    wait for the google charting libs to be ready*/
+
+    var mainApp = angular.module("mainApp", ['googlechart']);
+    mainApp.controller('QuestionController', myControllerFunction);
+    myControllerFunction.$inject = ["$scope", "$http", "$timeout"];
+
+
+    function myControllerFunction($scope, $http, $timeout) {
+        $scope.totalQuestionCount = 0
+        $scope.index = 0
+
+        $scope.isIndex = false
+        $scope.isTest = false
+        $scope.isResult = false
+        $scope.isAnnoymous = true
+        $scope.isTimeLeft = true
+
+
+        $scope.counter = 0;
+
+        $scope.phoneNumber = ""
+        $scope.Password = ""
+        $scope.ConfirmPassword = ""
+
+        $scope.hello = "Welcome  Guest ";
+
+        $.blockUI({ message: '<h1>Loading Exam</h1>' });
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        $http.get('/api/ExamApi/GetExamData?examid=1').
+        success(function (data, status, headers, config) {
+            $scope.Examviewmodal = data;
+
+            $scope.totalQuestionCount = $scope.Examviewmodal.QuestionSheet.length;
+            $scope.CurrentQuestion = $scope.Examviewmodal.QuestionSheet[$scope.index]
+            $scope.isIndex = true;
+            $.unblockUI();
+        }).
+        error(function (data, status, headers, config) {
+            alert('error');
+        });
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        $scope.NextQuestion = function (result) {
+
+
+            if ($scope.index <= $scope.totalQuestionCount && $scope.index >= 0) {
+
+                $scope.Examviewmodal.QuestionSheet[$scope.index].UserAnswer = $scope.CurrentQuestion.UserAnswer;
+
+                if ($scope.index != $scope.totalQuestionCount) {
+                    $scope.index++;
+                    $scope.CurrentQuestion = $scope.Examviewmodal.QuestionSheet[$scope.index]
+                }
+
+            }
+
+        };
+
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $scope.PreviousQuestion = function (result) {
+
+
+            if ($scope.index >= 0) {
+                $scope.Examviewmodal.QuestionSheet[$scope.index].UserAnswer = $scope.CurrentQuestion.UserAnswer
+                if ($scope.index != 0) {
+                    $scope.index--;
+                    $scope.CurrentQuestion = $scope.Examviewmodal.QuestionSheet[$scope.index]
+                }
+            }
+
+        };
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $scope.StartTest = function (result) {
+
+            $scope.isIndex = false;
+            $scope.isTest = true;
+            $scope.isTimeLeft = true;
+            $scope.counter = $scope.Examviewmodal.ExamMinutes;
+
+            $timeout(timer, 60000);
+
+
+        };
+
+
+        var timer = function () {
+            if ($scope.counter > 0) {
+                $scope.counter--;
+                $timeout(timer, 60000);
+            } else {
+
+                $scope.isTimeLeft = false;
+                $timeout.cancel(timer);
+                bootbox.alert("Time Over .Submit Answers!");
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $scope.LoginUser = function (result) {
+
+            var data = $scope.Examviewmodal.Candidateviewmodal;
+
+            if ($scope.loginform.$valid) {
+                $http.post("/api/ExamApi/LoginUser", data).
+          success(function (response) {
+              $scope.Examviewmodal.Candidateviewmodal = response;
+
+              if (response.isValidUser) {
+
+                  $scope.isAnnoymous = false
+                  $scope.hello = "Welcome  " + response.CandidateName;
+              } else {
+                  $scope.isAnnoymous = true
+
+
+              }
+
+          }).
+          error(function (response) {
+              alert("An error occurred during the AJAX request");
+          });
+            }
+
+
+
+
+        };
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $scope.Register = function () {
+
+            var data = $scope.Examviewmodal.Candidateviewmodal;
+
+            if ($scope.registerform.$valid) {
+                $http.post("/api/ExamApi/RegisterUser", data).
+      success(function (response) {
+          $scope.Examviewmodal.Candidateviewmodal = response
+          if (response.isValidUser == true) {
+              $scope.isAnnoymous = false
+              $scope.hello = "Welcome  " + response.CandidateName;
+          }
+          else {
+              $scope.isAnnoymous = true
+              $scope.hello = "Welcome Guest ";
+          }
+
+      }).
+      error(function (response) {
+          $scope.isAnnoymous = true
+          alert("An error occurred during the AJAX request");
+      });
+            }
+
+
+
+
+
+
+            //if ($scope.Examviewmodal.Candidateviewmodal.CandidateName.Trim() == "") {
+            //    form.registername.$setValidity(false);
+            //}
+            //else if ($scope.Examviewmodal.Candidateviewmodal.CandidateName.Trim() == "") {
+            //    form.registerpassword.$setValidity(false);
+            //}
+            //else {
+
+            //}
+
+
+
+
+        };
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $scope.SubmitAction = function () {
+            $.blockUI({ message: '<h1>Calculating  Result</h1>' });
+            $scope.Examviewmodal.UsedMinutes = $scope.Examviewmodal.ExamMinutes - $scope.counter
+
+            var data = $scope.Examviewmodal;
+
+            $http.post("/api/ExamApi/Post", data).
+          success(function (response) {
+              $scope.Examviewmodal = response;
+              $scope.isResult = true;
+              $scope.isTest = false;
+
+
+              if ($scope.Examviewmodal.FinalMark >= $scope.Examviewmodal.Cuttoff) {
+                  $scope.hello = "Congrats " + $scope.Examviewmodal.Candidateviewmodal.CandidateName + " you passed Cutoff and Will be in list";
+
+              }
+              else {
+                  $scope.hello = "Sorry " + $scope.Examviewmodal.Candidateviewmodal.CandidateName + " you are below Cutoff and will need more practise";
+              }
+
+
+
+
+              $scope.SetChartvalue()
+              $.unblockUI();
+          }).
+          error(function (response) {
+              $scope.isAnnoymous = true
+              alert("An error occurred during the AJAX request");
+          });
+
+        };
+
+        function successCallback(response) {
+            //success code
+            $scope.ResultData = response.data;
+        }
+        function errorCallback(error) {
+            //error code
+            alert('error');
+        }
+
+
+
+
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $scope.myChartObject = {};
+        $scope.myChartObject.type = "Gauge";
+
+
+
+
+        $scope.myChartObject.options = {
+            width: 500,
+            height: 180,
+            redFrom: 0,
+            redTo: 50,
+            yellowFrom: 50,
+            yellowTo: 65,
+            greenFrom: 65,
+            greenTo: 100,
+            minorTicks: 5
+        };
+
+        $scope.myChartObject.data = [
+          ['Label', 'Value'],
+          ['Mark', 0]
+
+        ];
+
+        $scope.SetChartvalue = function (result) {
+
+            $scope.myChartObject.data = [
+           ['Label', 'Value'],
+           ['Mark', $scope.Examviewmodal.FinalMark]
+
+            ];
+
+        }
+
+    };
+
+
+
+
+
+
+</script>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('.message a').click(function () {
+            $('.myform').animate({ height: "toggle", opacity: "toggle" }, "slow");
+        });
+    });
+
+</script>
+
+<div ng-app="mainApp" ng-controller="QuestionController">
+
+
+    <h2>{{hello}}</h2>
+
+
+    <div class="container" ng-show="isIndex">
+
+
+
+        <div class="panel panel-default">
+            <div class="login-page" ng-show="isAnnoymous">
+                <div class="logform">
+                    <form name="registerform" class="register-form myform">
+                        <input type="text" ng-model="Examviewmodal.Candidateviewmodal.CandidateName" required placeholder="Email/Name" />
+                        <input type="password" ng-model="Examviewmodal.Candidateviewmodal.Password" required placeholder="password" />
+                        <input type="text" ng-model="Examviewmodal.Candidateviewmodal.EmailID" placeholder="email address/phone" />
+                        <button ng-click="Register()">create</button>
+                        <p class="message">Already registered? <a href="#">Sign In</a></p>
+                        <p style="color:red;font-family:SansSerif">{{Examviewmodal.Candidateviewmodal.LoginMessage}}</p>
+                    </form>
+                    <form name="loginform" class="login-form myform">
+                        <input type="text" ng-model="Examviewmodal.Candidateviewmodal.CandidateName" required placeholder="username" />
+                        <input type="password" ng-model="Examviewmodal.Candidateviewmodal.Password" required placeholder="password" />
+                        <button ng-click="LoginUser()">login</button>
+                        <p class="message">Not registered? <a href="#">Create an account</a></p>
+                        <p style="color:red;font-family:SansSerif">{{Examviewmodal.Candidateviewmodal.LoginMessage}}</p>
+                    </form>
+
+                </div>
+
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Exam </th>
+                        <th scope="col"> {{Examviewmodal.ExamName}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Total Question</th>
+                        <td>{{Examviewmodal.TotalQuestion}}</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">Total Time</th>
+                        <td>{{Examviewmodal.ExamMinutes}}</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">Negative Mark</th>
+                        <td>-1 per 3 Wrong Answer </td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">Cut Off</th>
+                        <td>{{Examviewmodal.Cuttoff}} </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
+            <div class="panel-heading">Question Areas</div>
+            <div class="panel-body table-responsive">
+
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Area </th>
+                            <th scope="col">Number:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in Examviewmodal.ExamKnowledgeViewModals">
+                            <th scope="row">{{x.KnowledgeAreaName}}</th>
+                            <td>{{x.TotalQstn}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+
+
+
+            </div>
+
+
+
+
+            <div class="panel-footer"><button ng-click="StartTest()" ng-hide="isAnnoymous" class="btnGreen">Start Test </button></div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <div class="container" ng-show="isTest">
+
+        <div>
+            <p> Time Left : {{counter}} Minutes</p>
+            <p> Question {{index+1}} of {{totalQuestionCount+1}}</p>
+            <p class="Question well">{{CurrentQuestion.FullQuestion}}</p>
+            <p><label class="radio-inline"><input type="radio" ng-model="CurrentQuestion.UserAnswer" ng-value="CurrentQuestion.AnswerOption1">{{CurrentQuestion.AnswerOption1}} </label></p>
+            <p><label class="radio-inline"><input type="radio" ng-model="CurrentQuestion.UserAnswer" ng-value="CurrentQuestion.AnswerOption2">{{CurrentQuestion.AnswerOption2}} </label></p>
+            <p><label class="radio-inline"><input type="radio" ng-model="CurrentQuestion.UserAnswer" ng-value="CurrentQuestion.AnswerOption3">{{CurrentQuestion.AnswerOption3}} </label></p>
+            <p><label class="radio-inline"><input type="radio" ng-model="CurrentQuestion.UserAnswer" ng-value="CurrentQuestion.AnswerOption4">{{CurrentQuestion.AnswerOption4}} </label></p>
+
+        </div>
+        <p>
+            <button class="btn btn-info" ng-show="isTimeLeft" ng-click="NextQuestion()">Next Question</button>
+            <button class="btn btn-warning" ng-show="isTimeLeft" ng-click="PreviousQuestion()">Previous Question</button>
         </p>
-    </div>
-    <div id="ResultDiv"></div>
-    <div id="timer"></div>
-    <div id="MainCont">
 
-    </div>
+        <p style="text-align :center ">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btnGreen" ng-click="SubmitAction()">Submit answers and see result</button>
+                </div>
+            </div>
 
-    <div>
-        <p style="text-align:center ;padding-right :10px">
-
-            <button type="button" id="Next" class="btn btn-warning">Next</button>
         </p>
+
+
     </div>
+
+
+
+
+    <div class="container" ng-show="isResult">
+
+        <div>
+            <div style="text-align:center" id="chartdiv" g-chart></div>
+            <div google-chart chart="myChartObject" style="height:200px; width:100%;"></div>
+            <h3>Result</h3><div class="panel panel-default">
+                <div class="panel-heading">Total Mark :<strong> {{Examviewmodal.FinalMark}} </strong> </div>
+                <div class="panel-body">Total Question :<strong> {{totalQuestionCount}} </strong> </div>
+                <div class="panel-body">Correct Answer :<strong>{{Examviewmodal.correctAnswercount}}</strong> </div>
+                <div class="panel-body">Wrong Answer :<strong>{{Examviewmodal.WrongAnswerCount}}</strong> </div>
+                <div class="panel-body">Not Attended :<strong>{{Examviewmodal.NoAnswerCount}}</strong> </div>
+                <div class="panel-body"><p>To Study Kerala PSC Questions in Malayalam,  click here <a href="@Url.Action("PSCMalayalamQuestions", "KeralaPSC")">Free English Kerala PSC Questions</a> </p></div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="panel-body table-responsive">
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Area </th>
+                        <th scope="col">Question:</th>
+                        <th style="color:green" scope="col">Correct:</th>
+                        <th style="color:red" scope="col">Wrong:</th>
+                        <th style="color:orange" scope="col">Skipped:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in Examviewmodal.ExamKnowledgeViewModals">
+                        <th>{{x.KnowledgeAreaName}}</th>
+                        <td>{{x.TotalQstn}}</td>
+                        <td style="color:green">{{x.CorrectAnswerCount}}</td>
+                        <td style="color:red">{{x.WrongAnswersCount}}</td>
+                        <td style="color:orange">{{x.NoAnswerCount}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+
+
+
+        </div>
+
+
+        <button class="btn-info btn" data-toggle="collapse" data-target="#Answers">Show Answers </button>
+        <div id="Answers" class="collapse">
+
+
+
+
+
+
+            <div ng-repeat="x in Examviewmodal.QuestionSheet">
+
+                <div class="well">
+                    <p>
+                        <strong> Question  :{{ $index+1 }}</strong>
+                    </p>
+                    <p class="Question">{{x.FullQuestion}}</p>
+                </div>
+
+
+                <p><label class="radio-inline"><input type="radio" ng-disabled="true">{{x.AnswerOption1}} </label></p>
+                <p><label class="radio-inline"><input type="radio" ng-disabled="true">{{x.AnswerOption2}} </label></p>
+                <p><label class="radio-inline"><input type="radio" ng-disabled="true">{{x.AnswerOption3}} </label></p>
+                <p><label class="radio-inline"><input type="radio" ng-disabled="true">{{x.AnswerOption4}} </label></p>
+                <div class="Answerdiv" ng-class="{'CorrectAnswerBack': x.isCorrect == 'Y' , 'WrongAnswerBack': x.isCorrect == 'S' , 'WrongAnswerBack': x.isCorrect == 'N'}">
+                    <p class="CorrectAnswer"> <strong>Correct Answer : {{x.CorrectAnswer}} </strong> </p>
+                    <p class="UserAnswer"> <strong>Your Answer : {{x.UserAnswer}} </strong> </p>
+                    <p>Knowledge Area :  {{x.KnowledgeAreaName}} </p>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+    <button class="btn-info btn" data-toggle="collapse" data-target="#RankList">Show Rank List </button>
+    <div id="RankList" class="collapse">
+
+
+        <div class="panel-body table-responsive">
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Rank </th>
+                        <th scope="col">Name:</th>
+                        <th style="color:green" scope="col">Mark:</th>
+                        <th scope="col">Date:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in Examviewmodal.ToppersViewModels">
+                        <th>{{ $index+1 }}</th>
+                        <td>{{x.UserName}}</td>
+                        <td style="color:green">{{x.FinalMark}}</td>
+                        <td>{{x.ExamDate}}</td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
 </div>
+
+
+
+<script>
+
+
+
+
+
+</script>
+

@@ -220,11 +220,13 @@
     <Compile Include="Controllers\CertificationController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ExamApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HRInterviewController.cs" />
     <Compile Include="Controllers\JobVaccanciesController.cs" />
     <Compile Include="Controllers\KeralaPSCController.cs" />
     <Compile Include="Controllers\PMPController.cs" />
+    <Compile Include="Controllers\TopicNotesDataApiController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -244,6 +246,10 @@
     <Compile Include="Migrations\201901170634134_removedquestionpercentage.cs" />
     <Compile Include="Migrations\201901170634134_removedquestionpercentage.Designer.cs">
       <DependentUpon>201901170634134_removedquestionpercentage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904141815427_addedtopic.cs" />
+    <Compile Include="Migrations\201904141815427_addedtopic.Designer.cs">
+      <DependentUpon>201904141815427_addedtopic.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -430,6 +436,10 @@
     <Content Include="Views\KeralaPSC\KeralaPSCLGCTest.cshtml" />
     <Content Include="Views\KeralaPSC\VEOSampleQuestions.cshtml" />
     <Content Include="Views\KeralaPSC\KeralaPSCVEOTest.cshtml" />
+    <Content Include="Views\Certification\PMPOnline.cshtml" />
+    <Content Include="Views\Certification\DHAOnline.cshtml" />
+    <Content Include="Views\Certification\DHAMockTest.cshtml" />
+    <Content Include="Views\KeralaPSC\PSCNotes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -437,6 +447,7 @@
     <Folder Include="Areas\OnlineTest\Models\" />
     <Folder Include="Content\QuestionImage\" />
     <Folder Include="ElmahLog\" />
+    <Folder Include="Views\TopicNotesData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -479,6 +490,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901170634134_removedquestionpercentage.resx">
       <DependentUpon>201901170634134_removedquestionpercentage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904141815427_addedtopic.resx">
+      <DependentUpon>201904141815427_addedtopic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
